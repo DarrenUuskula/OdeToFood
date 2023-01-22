@@ -1,6 +1,8 @@
-﻿namespace OdeToFood.Views.Home
-{
-    public class About
-    {
-    }
+﻿@model AboutModel
+@{
+	ViewBag.Title = "About";
 }
+<div>
+	<h2>Name: @Model.Name</h2>
+	<h3>Location: @Model.Location</h3>
+</div>
