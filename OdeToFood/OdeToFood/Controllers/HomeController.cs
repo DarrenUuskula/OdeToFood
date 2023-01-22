@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using OdeToFood.Data;
 using OdeToFood.Models;
 using System;
 using System.Collections.Generic;
@@ -11,22 +12,18 @@ namespace OdeToFood.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
+		private readonly ApplicationDbContext _db;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ApplicationDbContext dbContext)
 		{
-			_logger = logger;
+			_db = dbContext;
 		}
 
 		public IActionResult Index()
 		{
-			var controller = RouteData.Values["controller"];
-			var action = RouteData.Values["action"];
-			var id = RouteData.Values["id"];
+			var model = _db.Restaurants.ToList();
 
-			ViewBag.Message = $"{controller}::{action} {id}";
-
-			return View();
+			return View(model);
 		}
 
 		public IActionResult Privacy()
@@ -36,7 +33,7 @@ namespace OdeToFood.Controllers
 		public IActionResult About()
 		{
 			var model = new AboutModel();
-			model.Name = "Darren";
+			model.Name = "Kristjan";
 			model.Location = "Tallinn, Estonia";
 			return View(model);
 		}
@@ -45,6 +42,14 @@ namespace OdeToFood.Controllers
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+		protected override void Dispose(bool disposing)
+		{
+			if (_db != null)
+			{
+				_db.Dispose();
+			}
+			base.Dispose(disposing);
 		}
 	}
 }

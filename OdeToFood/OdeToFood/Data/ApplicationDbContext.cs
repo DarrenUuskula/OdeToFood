@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using OdeToFood.Models;
 
 namespace OdeToFood.Data
 {
@@ -9,5 +10,7 @@ namespace OdeToFood.Data
 			: base(options)
 		{
 		}
+		public DbSet<RestaurantReview> RestaurantReviews { get; set; }
+		public DbSet<Restaurant> Restaurants { get; set; }
 	}
 }
