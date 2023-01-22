@@ -48,5 +48,50 @@ namespace OdeToFood.Controllers
 			}
 			return View(review);
 		}
+		public async Task<IActionResult> Edit(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+
+			var review = await _context.RestaurantReviews.FindAsync(id);
+			if (review == null)
+			{
+				return NotFound();
+			}
+			return View(review);
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Edit(int id, RestaurantReview review)
+		{
+			if (id != review.Id)
+			{
+				return NotFound();
+			}
+
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					_context.Update(review);
+					await _context.SaveChangesAsync();
+				}
+				catch (DbUpdateConcurrencyException)
+				{
+					if (!_context.RestaurantReviews.Any(r => r.Id == id))
+					{
+						return NotFound();
+					}
+					else
+					{
+						throw;
+					}
+				}
+				return RedirectToAction(nameof(Index), new { id = review.RestaurantId });
+			}
+			return View(review);
+		}
 	}
 }
