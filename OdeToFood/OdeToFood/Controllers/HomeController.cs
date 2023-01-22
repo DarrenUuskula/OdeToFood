@@ -54,12 +54,12 @@ namespace OdeToFood.Controllers
 
 			return View(model);
 		}
-
+		[AllowAnonymous]
 		public IActionResult Privacy()
 		{
 			return View();
 		}
-
+		[AllowAnonymous]
 		public IActionResult About()
 		{
 			var model = new AboutModel();

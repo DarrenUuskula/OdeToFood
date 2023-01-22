@@ -9,17 +9,17 @@ using OdeToFood.Data;
 
 #nullable disable
 
-namespace OdeToFood.Data.Migrations
+namespace OdeToFood.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230122125417_AddOdeToFoodRole")]
-    partial class AddOdeToFoodRole
+    [Migration("20230122141121_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.13")
+                .HasAnnotation("ProductVersion", "6.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -183,7 +183,6 @@ namespace OdeToFood.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FavoriteRestaurant")
-                        .IsRequired()
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
 
@@ -242,15 +241,12 @@ namespace OdeToFood.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -278,7 +274,6 @@ namespace OdeToFood.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ReviewerName")
-                        .IsRequired()
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
 
@@ -294,7 +289,6 @@ namespace OdeToFood.Data.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
 
                     b.Property<string>("DisplayName")
-                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
