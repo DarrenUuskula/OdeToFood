@@ -28,7 +28,7 @@ namespace OdeToFood.Data
 					context.Restaurants.AddRange(
 					new Restaurant
 					{
-						Name = $"{i}. eatery",
+						Name = $"{i}",
 						City = "Nowhere",
 						Country = "USA"
 					});
