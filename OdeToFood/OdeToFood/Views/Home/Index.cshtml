@@ -10,6 +10,14 @@
 		<input class="btn btn-dark" type="submit" value="Search By Name" />
 	</div>
 </form>
-
+@System.Threading.Thread.CurrentThread.CurrentCulture /
+@System.Threading.Thread.CurrentThread.CurrentUICulture
+@{
+	var amount = 10.0m;
+	var someDate = new DateTime(2022, 11, 15);
+}
+<div>@OdeToFood.Resources.Views.Home.Index.Greeting</div>
+<div>@amount.ToString("c")</div>
+<div>@someDate.ToShortDateString()</div>
 
 <partial name="_Restaurants" model="Model" />
