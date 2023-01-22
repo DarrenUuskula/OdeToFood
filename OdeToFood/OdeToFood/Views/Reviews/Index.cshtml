@@ -1,6 +1,13 @@
-﻿namespace OdeToFood.Views.Reviews
-{
-    public class Index
-    {
-    }
+﻿@model Restaurant
+
+@{
+	ViewData["Title"] = $"{Model.Name} reviews";
 }
+
+<h1>Reviews for @Model.Name</h1>
+
+<partial name="_Reviews" model="@Model.Reviews" />
+
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
