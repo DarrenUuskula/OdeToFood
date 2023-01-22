@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OdeToFood.Data;
 using OdeToFood.Models;
+using OdeToFood.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace OdeToFood.Controllers
 			}
 			return View(review);
 		}
+
 		public async Task<IActionResult> Edit(int? id)
 		{
 			if (id == null)
@@ -64,7 +66,7 @@ namespace OdeToFood.Controllers
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, RestaurantReview review)
+		public async Task<IActionResult> Edit(int id, RestaurantReviewEditViewModel review)
 		{
 			if (id != review.Id)
 			{
@@ -75,7 +77,11 @@ namespace OdeToFood.Controllers
 			{
 				try
 				{
-					_context.Update(review);
+					var currentReview = await _context.RestaurantReviews.FindAsync(id);
+					currentReview.Body = review.Body;
+					currentReview.Rating = review.Rating;
+					_context.Entry(currentReview).State = EntityState.Modified;
+					//_context.Update(review);
 					await _context.SaveChangesAsync();
 				}
 				catch (DbUpdateConcurrencyException)
