@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,13 +23,13 @@ namespace OdeToFood.Controllers
         // GET: Restaurants
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Restaurants.ToListAsync());
+            return View(await _context.Restaurants.ToListAsync());
         }
 
         // GET: Restaurants/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Restaurants == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -44,6 +45,7 @@ namespace OdeToFood.Controllers
         }
 
         // GET: Restaurants/Create
+        [Authorize(Roles = SeedData.ROLE_ADMIN)]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +56,7 @@ namespace OdeToFood.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = SeedData.ROLE_ADMIN)]
         public async Task<IActionResult> Create([Bind("Id,Name,City,Country")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
@@ -68,7 +71,7 @@ namespace OdeToFood.Controllers
         // GET: Restaurants/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Restaurants == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -119,7 +122,7 @@ namespace OdeToFood.Controllers
         // GET: Restaurants/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Restaurants == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -139,23 +142,15 @@ namespace OdeToFood.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Restaurants == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Restaurants'  is null.");
-            }
             var restaurant = await _context.Restaurants.FindAsync(id);
-            if (restaurant != null)
-            {
-                _context.Restaurants.Remove(restaurant);
-            }
-            
+            _context.Restaurants.Remove(restaurant);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool RestaurantExists(int id)
         {
-          return _context.Restaurants.Any(e => e.Id == id);
+            return _context.Restaurants.Any(e => e.Id == id);
         }
     }
 }

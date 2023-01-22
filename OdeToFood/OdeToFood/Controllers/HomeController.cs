@@ -63,7 +63,7 @@ namespace OdeToFood.Controllers
         public IActionResult About()
         {
             var model = new AboutModel();
-            model.Name = "Kristjan";
+            model.Name = "Darren";
             model.Location = "Tallinn, Estonia";
             return View(model);
         }
