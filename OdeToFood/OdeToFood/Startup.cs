@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -40,6 +40,10 @@ namespace OdeToFood
 			services.AddIdentity<OdeToFoodUser, OdeToFoodRole>(options => options.SignIn.RequireConfirmedAccount = false)
 				.AddDefaultUI()
 				.AddEntityFrameworkStores<ApplicationDbContext>();
+
+			services.AddIdentityCore<OdeToFoodUser>(options => options.SignIn.RequireConfirmedAccount = true)
+				.AddEntityFrameworkStores<ApplicationDbContext>()
+				.AddTokenProvider<DataProtectorTokenProvider<OdeToFoodUser>>(TokenOptions.DefaultProvider);
 
 			services.AddLocalization(options => options.ResourcesPath = "Resources");
 
