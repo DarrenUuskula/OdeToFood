@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspNetCore.Unobtrusive.Ajax;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OdeToFood.Data;
 using OdeToFood.Models;
