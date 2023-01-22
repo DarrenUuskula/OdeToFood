@@ -15,12 +15,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10" />
 	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Reviews\" />
-  </ItemGroup>	<ItemGroup>
-		<Folder Include="Views\Reviews\" />
-	
 	
   <ItemGroup>
     <Folder Include="Views\Reviews\" />
