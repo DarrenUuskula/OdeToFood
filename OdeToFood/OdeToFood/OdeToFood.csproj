@@ -25,11 +25,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Resources\Models\RestaurantReview.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>RestaurantReview.resx</DependentUpon>
-		</Compile>
 		<Compile Update="Resources\Views\Home\Index.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -38,10 +33,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Update="Resources\Models\RestaurantReview.resx">
-			<Generator>PublicResXFileCodeGenerator</Generator>
-			<LastGenOutput>RestaurantReview.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\Views\Home\Index.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>Index.Designer.cs</LastGenOutput>
