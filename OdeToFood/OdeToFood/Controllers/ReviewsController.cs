@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OdeToFood.Data;
-using OdeToFood.Models;
 using OdeToFood.Models.ViewModels;
+using OdeToFood.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,8 +39,8 @@ namespace OdeToFood.Controllers
 			return View();
 		}
 		[HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(RestaurantReview review)
+		[ValidateAntiForgeryToken]
+		public ActionResult Create(RestaurantReview review)
 		{
 			if (ModelState.IsValid)
 			{

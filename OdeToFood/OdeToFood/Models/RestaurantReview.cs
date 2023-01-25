@@ -13,8 +13,8 @@ namespace OdeToFood.Models
 		[Range(1, 10)]
 		public int Rating { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Resources.Models.RestaurantReview), ErrorMessageResourceName = "Required")]
-        [StringLength(1024)]
+		[Required(ErrorMessageResourceType = typeof(Resources.Models.RestaurantReview), ErrorMessageResourceName = "Required")]
+		[StringLength(1024)]
 		public string Body { get; set; }
 
 		[Display(Name = "User Name")]
@@ -32,3 +32,4 @@ namespace OdeToFood.Models
 		}
 	}
 }
+

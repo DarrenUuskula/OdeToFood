@@ -120,6 +120,8 @@ namespace OdeToFood.Controllers
 		}
 
 		// GET: Restaurants/Delete/5
+		[HttpPost]
+		[Authorize(Roles = SeedData.ROLE_ADMIN)]
 		public async Task<IActionResult> Delete(int? id)
 		{
 			if (id == null)
